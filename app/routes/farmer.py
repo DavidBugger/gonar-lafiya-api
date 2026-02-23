@@ -1,7 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from app.schemas import (
     FarmerRegisterRequest, FarmerRegisterResponse, 
-    FarmerLoginRequest, FarmerLoginResponse, FarmerProfile
+    FarmerLoginRequest, FarmerLoginResponse, FarmerProfile,
+    FarmersListResponse
 )
 from typing import List
 import sqlite3
@@ -242,6 +243,41 @@ def login_farmer(request: FarmerLoginRequest):
             message="Login successful.",
             message_ha="An shiga cikin nasara.",
             profile=profile
+        )
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+
+# ── List All Farmers ───────────────────────────────────────────
+@router.get("/farmers", response_model=FarmersListResponse)
+def list_farmers():
+    """Retrieve all registered farmers."""
+    conn = get_db()
+    try:
+        farmers_data = conn.execute(
+            "SELECT * FROM farmers ORDER BY created_at DESC"
+        ).fetchall()
+
+        farmers = [
+            FarmerProfile(
+                id=row["id"],
+                name=row["name"],
+                phone=row["phone"],
+                village=row["village"],
+                state=row["state"],
+                livestock_types=json.loads(row["livestock_types"]),
+                created_at=row["created_at"]
+            )
+            for row in farmers_data
+        ]
+
+        return FarmersListResponse(
+            success=True,
+            total=len(farmers),
+            farmers=farmers
         )
 
     except Exception as e:

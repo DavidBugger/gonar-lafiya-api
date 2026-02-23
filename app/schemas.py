@@ -131,3 +131,9 @@ class FarmerLoginResponse(BaseModel):
     message: str
     message_ha: str
     profile: Optional[FarmerProfile] = None
+
+
+class FarmersListResponse(BaseModel):
+    success: bool
+    total: int
+    farmers: List[FarmerProfile]
