@@ -41,7 +41,7 @@ numpy==2.4.2
 openpyxl==3.1.5
 opt_einsum==3.4.0
 optree==0.18.0
-packaging @ file:///opt/miniconda3/conda-bld/packaging_1761049079023/work
+packaging
 pandas==3.0.1
 pillow==12.1.1
 protobuf==6.33.5
