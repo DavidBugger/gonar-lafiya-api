@@ -230,28 +230,26 @@ Returns all disease classes the model can predict, with English name, Hausa name
 
 #### `POST /api/v1/farmer/register`
 
-Register a new farmer. Phone number must be unique.
+Register a new farmer in the system.
+
+---
+
+#### `POST /api/v1/farmer/login`
+
+Retrieve a farmer's profile using their phone number. Useful for returning users.
 
 **Request Body:**
 ```json
 {
-  "name": "Musa Abdullahi",
-  "phone": "08012345678",
-  "village": "Gwaram",
-  "state": "Kano",
-  "livestock_types": ["cattle", "goat"]
+  "phone": "08012345678"
 }
 ```
 
-**Response:**
-```json
-{
-  "success": true,
-  "farmer_id": "A3F9BC12",
-  "message": "Farmer 'Musa Abdullahi' registered successfully. Your ID is A3F9BC12.",
-  "message_ha": "An yi rajista ga 'Musa Abdullahi' cikin nasara. ID ɗinka shine A3F9BC12."
-}
-```
+---
+
+#### `GET /api/v1/farmers`
+
+Retrieve a list of all registered farmers.
 
 ---
 
