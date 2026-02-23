@@ -1,5 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from app.schemas import FarmerRegisterRequest, FarmerRegisterResponse, HistoryEntry
+from app.schemas import (
+    FarmerRegisterRequest, FarmerRegisterResponse, 
+    FarmerLoginRequest, FarmerLoginResponse, FarmerProfile
+)
 from typing import List
 import sqlite3
 import uuid
@@ -202,6 +205,45 @@ def get_farmer_profile(farmer_id: str):
         }
     except HTTPException:
         raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+# ── Farmer Login ────────────────────────────────────────────────
+@router.post("/farmer/login", response_model=FarmerLoginResponse)
+def login_farmer(request: FarmerLoginRequest):
+    """Retrieve farmer profile by phone number (Login)."""
+    conn = get_db()
+    try:
+        farmer = conn.execute(
+            "SELECT * FROM farmers WHERE phone = ?", (request.phone,)
+        ).fetchone()
+
+        if not farmer:
+            return FarmerLoginResponse(
+                success=False,
+                message="No farmer found with this phone number.",
+                message_ha="Ba a sami manomin da ke da wannan lambar waya ba.",
+                profile=None
+            )
+
+        profile = FarmerProfile(
+            id=farmer["id"],
+            name=farmer["name"],
+            phone=farmer["phone"],
+            village=farmer["village"],
+            state=farmer["state"],
+            livestock_types=json.loads(farmer["livestock_types"]),
+            created_at=farmer["created_at"]
+        )
+
+        return FarmerLoginResponse(
+            success=True,
+            message="Login successful.",
+            message_ha="An shiga cikin nasara.",
+            profile=profile
+        )
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:

@@ -111,11 +111,23 @@ class FarmerRegisterResponse(BaseModel):
     message_ha: str
 
 
-# ── History Entry ────────────────────────────────────────────────
-class HistoryEntry(BaseModel):
-    id:               str
-    farmer_id:        str
-    livestock_type:   str
-    predicted_disease: str
-    confidence:       str
-    timestamp:        str
+# ── Login & Profile ──────────────────────────────────────────────
+class FarmerLoginRequest(BaseModel):
+    phone: str = Field(..., min_length=10, max_length=15)
+
+
+class FarmerProfile(BaseModel):
+    id: str
+    name: str
+    phone: str
+    village: str
+    state: str
+    livestock_types: List[str]
+    created_at: str
+
+
+class FarmerLoginResponse(BaseModel):
+    success: bool
+    message: str
+    message_ha: str
+    profile: Optional[FarmerProfile] = None
