@@ -36,7 +36,7 @@ class PredictionRequest(BaseModel):
     milk_reduction:       int = Field(0, ge=0, le=1)
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "livestock_type": "cattle",
                 "fever": 1,
@@ -93,7 +93,7 @@ class FarmerRegisterRequest(BaseModel):
     livestock_types: List[LivestockType]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "name": "Musa Abdullahi",
                 "phone": "08012345678",

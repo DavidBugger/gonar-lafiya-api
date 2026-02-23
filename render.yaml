@@ -1,5 +1,3 @@
-# Add this file to your backend folder:
-# render.yaml
 services:
   - type: web
     name: gonar-lafiya-api
