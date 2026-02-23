@@ -27,7 +27,7 @@ h5py==3.15.1
 idna==3.11
 Jinja2==3.1.6
 joblib==1.5.3
-keras==3.13.2
+keras
 kiwisolver==1.4.9
 libclang==18.1.1
 Markdown==3.10.2
@@ -37,12 +37,12 @@ matplotlib==3.10.8
 mdurl==0.1.2
 ml_dtypes==0.5.4
 namex==0.1.0
-numpy==2.4.2
+numpy
 openpyxl==3.1.5
 opt_einsum==3.4.0
 optree==0.18.0
 packaging
-pandas==3.0.1
+pandas
 pillow==12.1.1
 protobuf==6.33.5
 pydantic==2.12.5
@@ -56,8 +56,8 @@ python-multipart==0.0.22
 rasterio==1.5.0
 requests==2.32.5
 rich==14.3.3
-scikit-learn==1.8.0
-scipy==1.17.0
+scikit-learn
+scipy
 seaborn==0.13.2
 setuptools==80.10.2
 shapely==2.1.2
@@ -65,7 +65,7 @@ six==1.17.0
 starlette==0.52.1
 tensorboard==2.20.0
 tensorboard-data-server==0.7.2
-tensorflow==2.20.0
+tensorflow
 termcolor==3.3.0
 threadpoolctl==3.6.0
 typing-inspection==0.4.2
