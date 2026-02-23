@@ -55,7 +55,7 @@ def predict_disease(request: PredictionRequest):
 
         # Build row: livestock_type first, then symptoms in metadata order
         row = [livestock_enc] + [symptom_values.get(s, 0) for s in feature_cols]
-        all_feature_cols = ["livestock_type"] + feature_cols
+        all_feature_cols = ["livestock_encoded"] + feature_cols
         input_df = pd.DataFrame([row], columns=all_feature_cols)
 
         # ── 3. Predict ───────────────────────────────────────────
