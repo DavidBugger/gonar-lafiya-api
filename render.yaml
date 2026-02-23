@@ -1,0 +1,9 @@
+# Add this file to your backend folder:
+# render.yaml
+services:
+  - type: web
+    name: gonar-lafiya-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT

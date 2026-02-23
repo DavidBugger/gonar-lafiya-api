@@ -1,0 +1,40 @@
+{
+  "model_type": "Random Forest",
+  "accuracy": 1.0,
+  "cv_accuracy": 0.9981,
+  "cv_std": 0.0015,
+  "symptoms": [
+    "fever",
+    "blisters_mouth",
+    "blisters_feet",
+    "lameness",
+    "drooling",
+    "loss_of_appetite",
+    "nasal_discharge",
+    "coughing",
+    "difficulty_breathing",
+    "chest_pain_signs",
+    "weight_loss",
+    "diarrhea",
+    "eye_discharge",
+    "mouth_sores",
+    "sneezing",
+    "skin_lesions",
+    "swollen_lymph_nodes",
+    "sudden_death",
+    "weakness",
+    "milk_reduction"
+  ],
+  "livestock_types": [
+    "cattle",
+    "goat",
+    "sheep"
+  ],
+  "diseases": [
+    "CBPP",
+    "FMD",
+    "Healthy",
+    "PPR"
+  ],
+  "feature_count": 21
+}
